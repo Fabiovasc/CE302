@@ -1,0 +1,316 @@
+---
+title: "Lista funções"
+author: "Fábio Augusto Oliveira de Vasconcelos"
+date: "2024-12-04"
+output: html_document
+---
+
+Dado o conjunto de números naturais entre 1 e 500.000, resolva as questões a seguir:
+
+Quantos números primos existem neste intervalo?
+Dica: Crie uma função chamada contar_primos(limite) que receba um número limite (neste caso, 500.000) e retorne a quantidade de números primos encontrados.
+
+```{r}
+contar_primos <- function(limite){
+  primos <- c()
+  for (i in 2:limite){
+    if (all(i %% 2:(i-1) != 0)){
+      primos <- c(primos, i)
+    }
+  }
+  return(length(primos))
+}
+
+contar_primos(500000)
+```
+
+
+Quantos números pertencem à sequência ( S_i ), definida por:
+
+[ S_i = i + \frac{i^2}{2} ]
+
+Condição: Considere apenas os números de ( S_i ) no intervalo [1, 500.000].
+Dica: Implemente uma função chamada calcular_sequencia(limite) que retorne os números ( S_i ) que atendem à condição.
+
+```{r}
+calcular_sequencia <- function(limite){
+  sequencia <- c()
+  for (i in 1:limite){
+    if (i + (i^2)/2 <= limite){
+      sequencia <- c(sequencia, i + (i^2)/2)
+    }
+  }
+  return(sequencia)
+}
+
+calcular_sequencia(500000)
+
+
+```
+
+Faça um programa que calcule o novo salário de um funcionário com base no código de seu cargo, de acordo com a tabela abaixo:
+Código 	Cargo 	Aumento
+1 	Estagiário 	10%
+2 	Analista Júnior 	20%
+3 	Analista Pleno 	22%
+4 	Analista Senior 	25%
+5 	Especialista 	28%
+
+Implemente uma função chamada calcular_aumento(codigo, salario) que receba o código do cargo e o salário atual, e retorne o valor do aumento e o novo salário.
+
+```{r}
+calcular_aumento <- function(codigo, salario){
+  aumento <- 0
+  novo_salario <- 0
+  if (codigo == 1){
+    aumento <- salario * 0.10
+    novo_salario <- salario + aumento
+  } else if (codigo == 2){
+    aumento <- salario * 0.20
+    novo_salario <- salario + aumento
+  } else if (codigo == 3){
+    aumento <- salario * 0.22
+    novo_salario <- salario + aumento
+  } else if (codigo == 4){
+    aumento <- salario * 0.25
+    novo_salario <- salario + aumento
+  } else if (codigo == 5){
+    aumento <- salario * 0.28
+    novo_salario <- salario + aumento
+  }
+  return(c(aumento, novo_salario))
+}
+
+calcular_aumento(1, 1000)
+Faça um programa que calcule o novo salário de um funcionário com base no código de seu cargo, de acordo com a tabela abaixo:
+Código 	Cargo 	Aumento
+1 	Estagiário 	10%
+2 	Analista Júnior 	20%
+3 	Analista Pleno 	22%
+4 	Analista Senior 	25%
+5 	Especialista 	28%
+
+Implemente uma função chamada calcular_aumento(codigo, salario) que receba o código do cargo e o salário atual, e retorne o valor do aumento e o novo salário.
+
+```{r}
+calcular_aumento <- function(codigo, salario){
+  aumento <- 0
+  novo_salario <- 0
+  if (codigo == 1){
+    aumento <- salario * 0.10
+    novo_salario <- salario + aumento
+  } else if (codigo == 2){
+    aumento <- salario * 0.20
+    novo_salario <- salario + aumento
+  } else if (codigo == 3){
+    aumento <- salario * 0.22
+    novo_salario <- salario + aumento
+  } else if (codigo == 4){
+    aumento <- salario * 0.25
+    novo_salario <- salario + aumento
+  } else if (codigo == 5){
+    aumento <- salario * 0.28
+    novo_salario <- salario + aumento
+  }
+  return(c(aumento, novo_salario))
+}
+
+calcular_aumento(1, 1000)
+cat(paste0("O aumento foi de R$ ", calcular_aumento(1, 1000)[1], " e o novo salário é de R$ ", calcular_aumento(1, 1000)[2]))
+```
+Crie uma matriz ( M ) ( 10 \times 10 ) preenchida com números aleatórios entre 1 e 100. Desenvolva as seguintes funções para manipular a matriz:
+
+  soma_linha(matriz, linha) - Calcula a soma dos elementos de uma linha específica.
+  soma_coluna(matriz, coluna) - Calcula a soma dos elementos de uma coluna específica.
+    diagonal_principal(matriz) - Retorna os elementos da diagonal principal.
+    diagonal_secundaria(matriz) - Retorna os elementos da diagonal secundária.
+
+```{r}
+matriz_10x10 <- matrix(sample(1:100, 100, replace = TRUE), nrow = 10, ncol = 10)
+soma_linha<- function(matriz, linha){
+  return(sum(matriz[linha,]))
+} 
+soma_coluna <- function(matriz, coluna){
+  return(sum(matriz[,coluna]))
+}
+
+diagonal_principal <-  function(matriz){
+  return(diag(matriz))
+}
+
+diagonal_secundaria <- function(matriz){
+  return(diag(matriz[, ncol(matriz):1]))
+}
+
+soma_linha(matriz_10x10,5)
+soma_coluna(matriz_10x10,5)
+diagonal_principal(matriz_10x10)
+diagonal_secundaria(matriz_10x10)
+```
+
+
+
+Implemente um programa para determinar se uma matriz é simétrica. Para isso:
+
+  Crie a função verificar_simetria(matriz) que receba uma matriz quadrada e retorne se ela é simétrica ou não.
+  Preencha a matriz com valores aleatórios e verifique sua simetria.
+```{r}
+
+matriz_5x5 <- matrix(sample(1:100, 25, replace = TRUE), nrow = 5, ncol = 5)
+verificar_simetria <- function(matriz_5x5){
+  if (identical(matriz_5x5, t(matriz_5x5))){
+    return("A matriz é simétrica")
+  } else {
+    return("A matriz não é simétrica")
+  }
+}
+
+
+
+verificar_simetria(matriz_5x5)
+
+
+```
+Implemente um programa para calcular as seguintes operações sobre uma matriz de números inteiros ( M ) ( 5 \times 5 ):
+
+  maior_valor(matriz) - Retorna o maior valor contido na matriz.
+  menor_valor(matriz) - Retorna o menor valor contido na matriz.
+  media_geral(matriz) - Retorna a média aritmética de todos os elementos da matriz.
+  Aplique as funções sobre a matriz e exiba os resultados.
+  
+```{r}
+matriz_5x5 <- matrix(sample(1:100, 25, replace = TRUE), nrow = 5, ncol = 5)
+maior_valor <- function(matriz_5x5){
+  return(max(matriz_5x5))
+}
+
+menor_valor <- function(matriz_5x5){
+  return(min(matriz_5x5))
+}
+
+media_geral <- function(matriz_5x5){
+  return(mean(matriz_5x5))
+}
+
+maior_valor(matriz_5x5)
+menor_valor(matriz_5x5)
+media_geral(matriz_5x5)
+```
+Dado um vetor ( V ) contendo 100 elementos aleatórios entre 1 e 1.000:
+
+  Crie uma função par_impar(vetor) que retorne dois vetores: um contendo apenas os números pares e outro com os números ímpares.
+  Aplique a função sobre ( V ) e calcule a média dos elementos pares e ímpares separadamente.
+
+```{r}
+vetor <- sample(1:1000, 100, replace = TRUE)
+par_impar <- function(vetor){
+  pares <- vetor[vetor %% 2 == 0]
+  impares <- vetor[vetor %% 2 != 0]
+  return(list(pares, impares))
+}
+
+vetores <- par_impar(vetor)
+media_pares <- mean(vetores[[1]])
+media_impares <- mean(vetores[[2]])
+
+media_pares
+media_impares
+```
+Dada uma matriz ( N ) ( 6 \times 6 ), implemente um programa para encontrar:
+
+  A soma dos elementos acima da diagonal principal.
+  A soma dos elementos abaixo da diagonal principal.
+  Implemente as funções soma_acima_diagonal(matriz) e soma_abaixo_diagonal(matriz) e aplique sobre ( N ).
+  
+```{r}
+matriz_6x6 <- matrix(sample(1:100, 36, replace = TRUE), nrow = 6, ncol = 6)
+soma_acima_diagonal <- function(matriz_6x6){
+  return(sum(matriz_6x6[upper.tri(matriz_6x6)]))
+}
+
+soma_abaixo_diagonal <- function(matriz_6x6){
+  return(sum(matriz_6x6[lower.tri(matriz_6x6)]))
+}
+
+soma_acima_diagonal(matriz_6x6)
+soma_abaixo_diagonal(matriz_6x6)
+
+
+```
+
+
+  Crie uma função que calcula o fatorial de um número ( n ).
+
+  Crie uma função que dado um número, retorna o número primo mais próximo.
+
+  Crie uma função que dado um número, retorna o número quadrado perfeito mais próximo.
+
+  Crie uma função que dado um número, retorna o resto da divisão por 3.
+
+  Varra uma matriz de 20x20 com números aleatórios entre 1 e 1000 e aplique as funções criadas sobre cada elemento da matriz segundo as seguintes regras:
+       Se o número for par e menor do que 10, aplique a função do fatorial.
+      Se o número for ímpar, aplique a função do número primo mais próximo.
+      Se o número for maior do que 10 e menor do que 100, aplique a função do número quadrado perfeito mais próximo.
+       Se o número for maior do que 100, aplique a função do resto da divisão por 3.
+      Retorne 0 caso contrário.
+
+
+    
+```{r}
+fatorial <- function(n){
+  if (n == 0){
+    return(1)
+  } else {
+    return(n * fatorial(n - 1))
+  }
+}
+
+numero_primo_proximo <- function(n){
+  if (n == 1){
+    return(2)
+  } else {
+    for (i in n:(2*n)){
+      if (all(i %% 2:(i-1) != 0)){
+        return(i)
+      }
+    }
+  }
+}
+
+quadrado_perfeito_proximo <- function(n){
+  i <- 1
+  while (i^2 < n){
+    i <- i + 1
+  }
+  return(i^2)
+}
+
+resto_divisao_3 <- function(n){
+  return(n %% 3)
+}
+
+matriz_20x20 <- matrix(sample(1:1000, 400, replace = TRUE), nrow = 20, ncol = 20)
+
+for (i in 1:20){
+  for (j in 1:20){
+    if (matriz_20x20[i,j] %% 2 == 0 & matriz_20x20[i,j] < 10){
+      matriz_20x20[i,j] <- fatorial(matriz_20x20[i,j])
+    } else if (matriz_20x20[i,j] %% 2 != 0){
+      matriz_20x20[i,j] <- numero_primo_proximo(matriz_20x20[i,j])
+    } else if (matriz_20x20[i,j] > 10 & matriz_20x20[i,j] < 100){
+      matriz_20x20[i,j] <- quadrado_perfeito_proximo(matriz_20x20[i,j])
+    } else if (matriz_20x20[i,j] > 100){
+      matriz_20x20[i,j] <- resto_divisao_3(matriz_20x20[i,j])
+    } else {
+      matriz_20x20[i,j] <- 0
+    }
+  }
+}
+
+#verificar a nova matriz
+matriz_20x20
+
+
+```
+
+
